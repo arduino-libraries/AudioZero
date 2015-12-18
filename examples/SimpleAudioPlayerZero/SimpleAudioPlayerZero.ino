@@ -33,13 +33,11 @@ void setup()
   Serial.print("Initializing SD card...");
   if (!SD.begin(4)) {
     Serial.println(" failed!");
-    return;
+    while(true);
   }
   Serial.println(" done.");
-  // hi-speed SPI transfers
-  SPI.setClockDivider(4);
 
-  // 44100Khz stereo => 88200 sample rate
+  // 44100kHz stereo => 88200 sample rate
   AudioZero.begin(2*44100);
 }
 
