@@ -1,6 +1,6 @@
 = Audio Library for Arduino =
 
-The Audio library enables an Arduino Zero board to play back .wav files from a storage device like an SD card.
+The Audio library enables an Arduino Zero or MKR1000 board to play back .wav files from a storage device like an SD card.
 
 For more information about this library please visit us at
 http://arduino.cc/en/Reference/Audio
