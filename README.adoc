@@ -1,4 +1,4 @@
-= AudioZero Library for Arduinos based on SAMD Architecture =
+= AudioZero Library for Arduino =
 
 The AudioZero library enables an Arduino Zero or MKR1000 board (SAMD Architecture) to play back .wav files from a storage device like an SD card.
 The Zero and the MKR1000 use the DAC0 pin to play sounds.
