@@ -1,9 +1,8 @@
-= Audio Library for Arduino =
+= AudioZero Library for Arduino =
 
-The Audio library enables an Arduino Zero or MKR1000 board to play back .wav files from a storage device like an SD card.
-
+The AudioZero library enables an Arduino SAMD Board (e.g., https://store.arduino.cc/catalogsearch/result/?q=mkr[MKR boards], https://store.arduino.cc/arduino-nano-33-iot[Nano 33 IoT], https://store.arduino.cc/arduino-zero[Zero]) to play back .wav files from a storage device like an SD card to the `DAC0`/`A0` pin.
 For more information about this library please visit us at
-http://arduino.cc/en/Reference/Audio
+http://arduino.cc/en/Reference/AudioZero
 
 == License ==
 
