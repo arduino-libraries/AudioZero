@@ -36,8 +36,6 @@ void setup()
     while(true);
   }
   Serial.println(" done.");
-
-  // 44100kHz stereo => 88200 sample rate
 }
 
 void loop()
