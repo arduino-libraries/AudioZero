@@ -44,6 +44,7 @@ void loop()
 
   // open wave file from sdcard
   File myFile = SD.open("test.wav");
+  // 44100kHz stereo => 88200 sample rate
   AudioZero.begin(2*44100);
   if (!myFile) {
     // if the file didn't open, print an error and stop
