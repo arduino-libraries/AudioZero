@@ -36,9 +36,6 @@ void setup()
     while(true);
   }
   Serial.println(" done.");
-
-  // 44100kHz stereo => 88200 sample rate
-  AudioZero.begin(2*44100);
 }
 
 void loop()
@@ -47,6 +44,8 @@ void loop()
 
   // open wave file from sdcard
   File myFile = SD.open("test.wav");
+  // 44100kHz stereo => 88200 sample rate
+  AudioZero.begin(2*44100);
   if (!myFile) {
     // if the file didn't open, print an error and stop
     Serial.println("error opening test.wav");
@@ -57,7 +56,7 @@ void loop()
   
   // until the file is not finished  
   AudioZero.play(myFile);
-
+  AudioZero.close();
   Serial.println("End of file. Thank you for listening!");
   while (true) ;
 }
