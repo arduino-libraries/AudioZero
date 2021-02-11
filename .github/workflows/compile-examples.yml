@@ -48,6 +48,7 @@ jobs:
       - name: Compile examples
         uses: arduino/compile-sketches@main
         with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           fqbn: ${{ matrix.fqbn }}
           libraries: |
             # Install the AudioZero library from the local path
