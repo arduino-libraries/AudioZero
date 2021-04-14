@@ -4,8 +4,9 @@
 
 = {repository-name} library for Arduino =
 
-image:https://github.com/{repository-owner}/{repository-name}/workflows/Compile%20Examples/badge.svg["Compile Examples Status", link="https://github.com/{repository-owner}/{repository-name}/actions?workflow=Compile+Examples"]
-image:https://github.com/{repository-owner}/{repository-name}/workflows/Spell%20Check/badge.svg["Spell Check Status", link="https://github.com/{repository-owner}/{repository-name}/actions?workflow=Spell+Check"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml/badge.svg["Check Arduino status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/check-arduino.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml/badge.svg["Compile Examples status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/compile-examples.yml"]
+image:https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml/badge.svg["Spell Check status", link="https://github.com/{repository-owner}/{repository-name}/actions/workflows/spell-check.yml"]
 
 The {repository-name} library enables an Arduino SAMD Board (e.g., https://store.arduino.cc/catalogsearch/result/?q=mkr[MKR boards], https://store.arduino.cc/arduino-nano-33-iot[Nano 33 IoT], https://store.arduino.cc/arduino-zero[Zero]) to play back .wav files from a storage device like an SD card to the `DAC0`/`A0` pin.
 For more information about this library please visit us at
