@@ -12,9 +12,8 @@ on:
       - "examples/**"
       - "src/**"
   schedule:
-    # run every Tuesday at 3 AM UTC to catch breakage caused by changes to external dependencies (libraries, platforms)
-    - cron: "0 3 * * 2"
-  # See: https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows#workflow_dispatch
+    # Run every Tuesday at 8 AM UTC to catch breakage caused by changes to external resources (libraries, platforms).
+    - cron: "0 8 * * TUE"
   workflow_dispatch:
   repository_dispatch:
 
@@ -30,18 +29,51 @@ jobs:
       fail-fast: false
 
       matrix:
-        fqbn:
-          - arduino:samd:arduino_zero_edbg
-          - arduino:samd:mkr1000
-          - arduino:samd:mkrzero
-          - arduino:samd:mkrwifi1010
-          - arduino:samd:nano_33_iot
-          - arduino:samd:mkrfox1200
-          - arduino:samd:mkrwan1300
-          - arduino:samd:mkrwan1310
-          - arduino:samd:mkrgsm1400
-          - arduino:samd:mkrnb1500
-          - arduino:samd:mkrvidor4000
+        board:
+          - fqbn: arduino:samd:arduino_zero_edbg
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-arduino_zero_edbg
+          - fqbn: arduino:samd:mkr1000
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkr1000
+          - fqbn: arduino:samd:mkrzero
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrzero
+          - fqbn: arduino:samd:mkrwifi1010
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrwifi1010
+          - fqbn: arduino:samd:nano_33_iot
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-nano_33_iot
+          - fqbn: arduino:samd:mkrfox1200
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrfox1200
+          - fqbn: arduino:samd:mkrwan1300
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrwan1300
+          - fqbn: arduino:samd:mkrwan1310
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrwan1310
+          - fqbn: arduino:samd:mkrgsm1400
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrgsm1400
+          - fqbn: arduino:samd:mkrnb1500
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrnb1500
+          - fqbn: arduino:samd:mkrvidor4000
+            platforms: |
+              - name: arduino:samd
+            artifact-name-suffix: arduino-samd-mkrvidor4000
 
     steps:
       - name: Checkout
@@ -51,9 +83,10 @@ jobs:
         uses: arduino/compile-sketches@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          fqbn: ${{ matrix.fqbn }}
+          fqbn: ${{ matrix.board.fqbn }}
+          platforms: ${{ matrix.board.platforms }}
           libraries: |
-            # Install the AudioZero library from the local path
+            # Install the library from the local path.
             - source-path: ./
             - name: SD
           sketch-paths: |
@@ -61,9 +94,9 @@ jobs:
           enable-deltas-report: true
           sketches-report-path: ${{ env.SKETCHES_REPORTS_PATH }}
 
-      - name: Save memory usage change report as artifact
+      - name: Save sketches report as workflow artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ env.SKETCHES_REPORTS_PATH }}
           if-no-files-found: error
           path: ${{ env.SKETCHES_REPORTS_PATH }}
+          name: sketches-report-${{ matrix.board.artifact-name-suffix }}
